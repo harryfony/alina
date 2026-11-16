@@ -70,8 +70,9 @@ curl -c /tmp/baihu-cookies.txt -s -D - -o /dev/null \
 sleep 1
 
 RESET_RESPONSE=$(
-  curl -b /tmp/baihu-cookies.txt "http://localhost:${BAIHU_PORT}/api/v1/settings/password" \
+  curl -sS -b cookies.txt "http://localhost:${BAIHU_PORT}/api/v1/settings/password" \
   -H 'content-type: application/json' \
+  -H 'Accept: application/json' \
   --data-raw "{\"old_password\":\"$DEFAULT_PASSWORD\",\"new_password\":\"$ADMIN_PASSWORD\"}"
 )
 
